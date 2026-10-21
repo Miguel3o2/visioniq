@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "visioniq"
+version = "3.0.0"
+description = "VisionIQ - real-time CCTV detection, sequence anomaly scoring and operator console"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "VisionIQ" }]
+keywords = ["cctv", "anomaly-detection", "opencv", "computer-vision", "security"]
+dependencies = [
+    "numpy>=1.24",
+    "opencv-python-headless>=4.8",
+    "textual>=0.80",
+    "rich>=13.7",
+]
+
+[project.optional-dependencies]
+torch = ["torch>=2.0"]
+dev = ["pytest>=7.4"]
+
+[project.scripts]
+visioniq = "visioniq.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["visioniq*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = ["error::RuntimeWarning"]

@@ -1,0 +1,213 @@
+{
+  "windows": 7216,
+  "anomalous": 857,
+  "normal": 6359,
+  "auroc": 0.8723018285717851,
+  "precision": 0.6265486725663717,
+  "recall": 0.4130688448074679,
+  "f1": 0.49789029535864987,
+  "specificity": 0.9668186821827331,
+  "false_positive_rate": 0.03318131781726687,
+  "confusion": {
+    "tp": 354,
+    "fp": 211,
+    "tn": 6148,
+    "fn": 503
+  },
+  "best_f1": 0.534181240063593,
+  "best_ratio": 0.7,
+  "mean_ratio_anomalous": 4.1226464868136805,
+  "mean_ratio_normal": 0.36628584667078484,
+  "p95_ratio_normal": 0.8563318855242473,
+  "mean_score_anomalous": 0.47858998590250756,
+  "mean_score_normal": 0.08155180876626046,
+  "per_camera": {
+    "CAM-01": {
+      "windows": 902,
+      "anomalous": 105,
+      "normal": 797,
+      "auroc": 0.8267909422238156,
+      "mean_ratio": 0.6226985696680764,
+      "threshold": 0.9072318641677195,
+      "flagged": 93
+    },
+    "CAM-02": {
+      "windows": 902,
+      "anomalous": 103,
+      "normal": 799,
+      "auroc": 0.8694484610617641,
+      "mean_ratio": 0.31817133741429204,
+      "threshold": 2.5850992847287535,
+      "flagged": 0
+    },
+    "CAM-03": {
+      "windows": 902,
+      "anomalous": 131,
+      "normal": 771,
+      "auroc": 0.9812180077424976,
+      "mean_ratio": 3.6093079806999997,
+      "threshold": 0.05500000000000001,
+      "flagged": 178
+    },
+    "CAM-04": {
+      "windows": 902,
+      "anomalous": 104,
+      "normal": 798,
+      "auroc": 0.8261278195488722,
+      "mean_ratio": 0.5121463395159795,
+      "threshold": 0.7985200889427412,
+      "flagged": 115
+    },
+    "CAM-05": {
+      "windows": 902,
+      "anomalous": 105,
+      "normal": 797,
+      "auroc": 0.9061719543526319,
+      "mean_ratio": 0.24431568752665325,
+      "threshold": 2.670878657926558,
+      "flagged": 18
+    },
+    "CAM-06": {
+      "windows": 902,
+      "anomalous": 103,
+      "normal": 799,
+      "auroc": 0.6046635964858986,
+      "mean_ratio": 0.39263247484695357,
+      "threshold": 1.3165945383447826,
+      "flagged": 7
+    },
+    "CAM-07": {
+      "windows": 902,
+      "anomalous": 103,
+      "normal": 799,
+      "auroc": 0.9661713063659672,
+      "mean_ratio": 0.2502767825172602,
+      "threshold": 0.567641348995119,
+      "flagged": 56
+    },
+    "CAM-08": {
+      "windows": 902,
+      "anomalous": 103,
+      "normal": 799,
+      "auroc": 0.929098266036429,
+      "mean_ratio": 0.5496966572773536,
+      "threshold": 0.3177216888813019,
+      "flagged": 98
+    }
+  },
+  "per_kind": {
+    "normal": {
+      "windows": 6359,
+      "mean_ratio": 0.36628584667078484,
+      "share_flagged": 0.03318131781726687
+    },
+    "running": {
+      "windows": 278,
+      "mean_ratio": 1.2843912527774686,
+      "share_flagged": 0.3129496402877698
+    },
+    "crowd": {
+      "windows": 256,
+      "mean_ratio": 0.8220769136376698,
+      "share_flagged": 0.28125
+    },
+    "after_hours": {
+      "windows": 323,
+      "mean_ratio": 9.181410467603543,
+      "share_flagged": 0.6037151702786377
+    }
+  },
+  "operating_points": [
+    {
+      "ratio": 0.5,
+      "precision": 0.3381720430107527,
+      "recall": 0.733955659276546,
+      "f1": 0.4630106735369893,
+      "false_positive_rate": 0.19358389683912564,
+      "flagged": 1860
+    },
+    {
+      "ratio": 0.6,
+      "precision": 0.41384499623777277,
+      "recall": 0.6417736289381564,
+      "f1": 0.5032021957913998,
+      "false_positive_rate": 0.1225035382921843,
+      "flagged": 1329
+    },
+    {
+      "ratio": 0.7,
+      "precision": 0.4893203883495146,
+      "recall": 0.588098016336056,
+      "f1": 0.534181240063593,
+      "false_positive_rate": 0.08271740839754678,
+      "flagged": 1030
+    },
+    {
+      "ratio": 0.8,
+      "precision": 0.5364396654719236,
+      "recall": 0.5239206534422404,
+      "f1": 0.5301062573789846,
+      "false_positive_rate": 0.061015883000471775,
+      "flagged": 837
+    },
+    {
+      "ratio": 0.9,
+      "precision": 0.5891016200294551,
+      "recall": 0.46674445740956827,
+      "f1": 0.5208333333333333,
+      "false_positive_rate": 0.043874823085390785,
+      "flagged": 679
+    },
+    {
+      "ratio": 1.0,
+      "precision": 0.6296296296296297,
+      "recall": 0.41656942823803966,
+      "f1": 0.5014044943820224,
+      "false_positive_rate": 0.03302406038685328,
+      "flagged": 567
+    },
+    {
+      "ratio": 1.1,
+      "precision": 0.6952965235173824,
+      "recall": 0.396732788798133,
+      "f1": 0.5052005943536404,
+      "false_positive_rate": 0.023431357131624468,
+      "flagged": 489
+    },
+    {
+      "ratio": 1.25,
+      "precision": 0.7439613526570048,
+      "recall": 0.35939323220536756,
+      "f1": 0.4846577498033045,
+      "false_positive_rate": 0.016669287623840227,
+      "flagged": 414
+    },
+    {
+      "ratio": 1.5,
+      "precision": 0.804093567251462,
+      "recall": 0.3208868144690782,
+      "f1": 0.4587155963302752,
+      "false_positive_rate": 0.010536247837710332,
+      "flagged": 342
+    },
+    {
+      "ratio": 2.0,
+      "precision": 0.8231046931407943,
+      "recall": 0.2660443407234539,
+      "f1": 0.4021164021164021,
+      "false_positive_rate": 0.007705614090265765,
+      "flagged": 277
+    }
+  ],
+  "event_counts": {
+    "anomaly": 14,
+    "crowding": 3,
+    "unbadged_access": 5,
+    "tailgate": 1,
+    "after_hours": 5
+  },
+  "latency_ms": 2.7039949075990024,
+  "fps": 167.64108440560005,
+  "duration_s": 180.28997540473938,
+  "caveat": "Synthetic validation only; ground truth comes from the scene injector."
+}

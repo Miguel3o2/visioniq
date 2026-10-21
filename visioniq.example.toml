@@ -1,0 +1,104 @@
+# VisionIQ example configuration.
+#
+#   copy visioniq.example.toml visioniq.toml
+#
+# visioniq.toml is loaded automatically from the working directory.  Every key
+# is optional; the values below are the built-in defaults.  Unknown keys are
+# rejected so that typos fail loudly.
+
+[app]
+db_path = "data/visioniq.db"
+model_dir = "data/models"
+snapshot_dir = "snapshots"
+render_fps = 8.0
+display_width = 240
+display_height = 135
+retention_events = 500
+
+[model]
+backend = "auto"              # auto | torch | numpy
+window = 24                   # feature frames per sequence
+stride = 2
+hidden = 32
+warmup_windows = 400
+epochs = 12
+learning_rate = 0.002
+batch_size = 32
+threshold_percentile = 97.0
+threshold_multiplier = 1.10   # lower = more recall, higher = fewer false alarms
+error_floor = 0.05
+input_clip = 4.0
+hysteresis = 2
+cooldown = 45.0
+adaptation = false
+
+[rules]
+badge_window = 12.0
+tailgate_window = 6.0
+abandoned_seconds = 25.0
+anomaly_cooldown = 45.0
+event_cooldown = 60.0
+alert_retention_minutes = 30.0
+enabled = [
+  "anomaly",
+  "crowding",
+  "loitering",
+  "unbadged_access",
+  "tailgate",
+  "after_hours",
+  "abandoned",
+  "vehicle_restricted",
+  "source_stall",
+]
+
+# A [[cameras]] array replaces the built-in eight-camera list, so include every
+# camera you want.  Zones are normalised [x, y, w, h] rectangles.
+
+[[cameras]]
+id = "CAM-01"
+name = "Main Entrance"
+zone = "Ground / Zone A"
+source = "synthetic:lobby"    # synthetic:* | webcam:0 | video:path | rtsp://...
+tint = [0, 210, 255]
+restricted = true
+access_controlled = true
+capacity = 8
+loiter_seconds = 180.0
+after_hours = [20.0, 7.0]
+seed = 11
+fps = 10.0
+traffic = 1.2                 # synthetic scenes only
+
+  [[cameras.zones]]
+  name = "entrance"
+  kind = "entry"              # entry | restricted | general
+  rect = [0.74, 0.30, 0.24, 0.55]
+
+  [[cameras.zones]]
+  name = "secure area"
+  kind = "restricted"
+  rect = [0.05, 0.55, 0.45, 0.35]
+
+[[cameras]]
+id = "CAM-03"
+name = "Server Room"
+zone = "Level 2 / Zone C"
+source = "synthetic:server"
+tint = [0, 255, 190]
+restricted = true
+capacity = 2
+loiter_seconds = 90.0
+after_hours = [20.0, 7.0]
+seed = 33
+fps = 10.0
+traffic = 0.35
+
+  [[cameras.zones]]
+  name = "entrance"
+  kind = "entry"
+  rect = [0.42, 0.30, 0.16, 0.50]
+
+  [[cameras.zones]]
+  name = "server aisle"
+  kind = "restricted"
+  rect = [0.10, 0.55, 0.80, 0.35]
