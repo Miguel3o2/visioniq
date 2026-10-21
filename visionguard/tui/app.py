@@ -18,10 +18,10 @@ from textual.containers import Horizontal, Vertical
 from textual.widget import Widget
 from textual.widgets import DataTable, Footer, Static
 
-from visioniq.config import AppConfig
-from visioniq.core.engine import Engine
-from visioniq.core.types import CameraState, CameraView, Event, Severity
-from visioniq.tui.render import (
+from visionguard.config import AppConfig
+from visionguard.core.engine import Engine
+from visionguard.core.types import CameraState, CameraView, Event, Severity
+from visionguard.tui.render import (
     banner_text,
     calibration_text,
     camera_header,
@@ -91,8 +91,8 @@ class FeedCell(Vertical):
             self._view.refresh()
 
 
-class VisionIQApp(App[None]):
-    TITLE = "VisionIQ"
+class VisionGuardApp(App[None]):
+    TITLE = "VisionGuard"
     SUB_TITLE = "Intelligent CCTV Monitoring System"
     CSS = """
     Screen { background: #0a0f1e; color: #e8edf5; }
@@ -203,7 +203,7 @@ class VisionIQApp(App[None]):
             else:
                 progress = float(status.get("progress") or 0.0)
                 self._set_loading(
-                    "VISIONIQ\n\n"
+                    "VISIONGUARD\n\n"
                     f"{status.get('stage', 'starting')}\n\n"
                     f"[{'█' * int(progress * 32):<32}] {progress * 100:3.0f}%\n\n"
                     "calibrating autoencoders on normal behaviour",
@@ -277,7 +277,7 @@ class VisionIQApp(App[None]):
         critical = sum(1 for event in snapshot.events if event.severity is Severity.CRITICAL and not event.ack)
         warnings = sum(1 for event in snapshot.events if event.severity is Severity.WARNING and not event.ack)
         text = Text()
-        text.append(" ◉ VISIONIQ ", style="bold #0a0f1e on #00d4ff")
+        text.append(" ◉ VISIONGUARD ", style="bold #0a0f1e on #00d4ff")
         text.append(" v3.0 ", style="bold #00d4ff on #0f1628")
         text.append(f" {snapshot.site} ", style="bold #9fb3cc")
         text.append("│ ", style="#3d5070")

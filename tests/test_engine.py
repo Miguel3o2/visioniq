@@ -2,9 +2,9 @@ from __future__ import annotations
 
 import time
 
-from visioniq.config import AppConfig, CameraConfig, ModelConfig
-from visioniq.core.engine import Engine
-from visioniq.vision.source import DemoScript
+from visionguard.config import AppConfig, CameraConfig, ModelConfig
+from visionguard.core.engine import Engine
+from visionguard.vision.source import DemoScript
 
 
 def _config() -> AppConfig:
@@ -69,9 +69,9 @@ def test_engine_runs_calibrates_and_persists(tmp_path):
     finally:
         engine.stop()
 
-    db = tmp_path / "data" / "visioniq.db"
+    db = tmp_path / "data" / "visionguard.db"
     assert db.exists()
-    from visioniq.core.store import EventStore
+    from visionguard.core.store import EventStore
 
     store = EventStore(db)
     rows = store.recent(10)

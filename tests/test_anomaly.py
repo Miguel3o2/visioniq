@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import numpy as np
 
-from visioniq.config import ModelConfig
-from visioniq.vision.anomaly import AnomalyScorer, SequenceAutoencoder, _ema
+from visionguard.config import ModelConfig
+from visionguard.vision.anomaly import AnomalyScorer, SequenceAutoencoder, _ema
 
 
 def _windows(n: int, window: int, features: int = 12, scale: float = 0.05, seed: int = 0):

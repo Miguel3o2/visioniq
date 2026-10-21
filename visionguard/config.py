@@ -1,4 +1,4 @@
-"""Configuration for VisionIQ.
+"""Configuration for VisionGuard.
 
 A TOML file is optional; sane defaults matching the original eight-camera
 deployment ship with the package.  Unknown keys are rejected so typos in a
@@ -187,7 +187,7 @@ class AppConfig:
     cameras: list[CameraConfig] = field(default_factory=list)
     model: ModelConfig = field(default_factory=ModelConfig)
     rules: RuleConfig = field(default_factory=RuleConfig)
-    db_path: str = "data/visioniq.db"
+    db_path: str = "data/visionguard.db"
     model_dir: str = "data/models"
     snapshot_dir: str = "snapshots"
     render_fps: float = 8.0

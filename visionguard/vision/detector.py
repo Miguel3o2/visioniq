@@ -27,7 +27,7 @@ from typing import Sequence
 import cv2
 import numpy as np
 
-from visioniq.core.types import BBox, Detection, Track
+from visionguard.core.types import BBox, Detection, Track
 
 _TYPICAL_PERSON_AREA = 0.055 * 0.26
 

@@ -12,7 +12,7 @@ import sqlite3
 import threading
 from pathlib import Path
 
-from visioniq.core.types import Event, Severity
+from visionguard.core.types import Event, Severity
 
 _SCHEMA = """
 CREATE TABLE IF NOT EXISTS events (

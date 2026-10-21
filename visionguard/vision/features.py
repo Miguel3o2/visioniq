@@ -13,7 +13,7 @@ from dataclasses import dataclass
 
 import numpy as np
 
-from visioniq.core.types import FEATURE_NAMES, Track, TrackView
+from visionguard.core.types import FEATURE_NAMES, Track, TrackView
 
 
 @dataclass(slots=True, frozen=True)

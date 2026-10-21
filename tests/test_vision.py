@@ -2,10 +2,10 @@ from __future__ import annotations
 
 import numpy as np
 
-from visioniq.core.types import Detection
-from visioniq.vision.detector import DetectorConfig, MotionDetector, Tracker, frame_energy
-from visioniq.vision.features import FeatureExtractor
-from visioniq.vision.source import SyntheticSource
+from visionguard.core.types import Detection
+from visionguard.vision.detector import DetectorConfig, MotionDetector, Tracker, frame_energy
+from visionguard.vision.features import FeatureExtractor
+from visionguard.vision.source import SyntheticSource
 
 
 def _frames(source: SyntheticSource, count: int) -> list[np.ndarray]:
@@ -83,14 +83,14 @@ def test_frame_energy_is_zero_for_first_frame():
 
 
 def _box(cx: float, cy: float):
-    from visioniq.core.types import BBox
+    from visionguard.core.types import BBox
 
     return BBox(cx, cy, 0.06, 0.22)
 
 
 def _track(track_id: int, label: str, cx: float, cy: float, *, first_seen: float,
            last_seen: float, vx: float = 0.0):
-    from visioniq.core.types import BBox, Track
+    from visionguard.core.types import BBox, Track
 
     track = Track(
         id=track_id,

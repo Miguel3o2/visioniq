@@ -1,13 +1,13 @@
-# VisionIQ example configuration.
+# VisionGuard example configuration.
 #
-#   copy visioniq.example.toml visioniq.toml
+#   copy visionguard.example.toml visionguard.toml
 #
-# visioniq.toml is loaded automatically from the working directory.  Every key
+# visionguard.toml is loaded automatically from the working directory.  Every key
 # is optional; the values below are the built-in defaults.  Unknown keys are
 # rejected so that typos fail loudly.
 
 [app]
-db_path = "data/visioniq.db"
+db_path = "data/visionguard.db"
 model_dir = "data/models"
 snapshot_dir = "snapshots"
 render_fps = 8.0

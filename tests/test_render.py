@@ -4,10 +4,10 @@ import math
 
 import numpy as np
 
-from visioniq.benchmark import BenchmarkReport, _auroc, analyse, render_report
-from visioniq.core.engine import Sample
-from visioniq.core.types import CameraState, CameraView, MetricsView, Snapshot
-from visioniq.tui.render import (
+from visionguard.benchmark import BenchmarkReport, _auroc, analyse, render_report
+from visionguard.core.engine import Sample
+from visionguard.core.types import CameraState, CameraView, MetricsView, Snapshot
+from visionguard.tui.render import (
     banner_text,
     calibration_text,
     camera_header,
@@ -16,7 +16,7 @@ from visioniq.tui.render import (
     rail_text,
     score_bar,
 )
-from visioniq.core.types import Event, Severity
+from visionguard.core.types import Event, Severity
 
 
 def _sample(score: float, error: float, threshold: float, *, truth: tuple[str, ...] = (),
@@ -58,7 +58,7 @@ def test_ratio_normalisation_and_operating_point():
     live = next(row for row in report.operating_points if row["ratio"] == 1.0)
     assert 0.0 <= live["f1"] <= 1.0
     text = render_report(report)
-    assert "VISIONIQ SYNTHETIC BENCHMARK" in text
+    assert "VISIONGUARD SYNTHETIC BENCHMARK" in text
     assert "operating point sweep" in text
     assert "<- live" in text
 

@@ -15,15 +15,15 @@ import time
 from collections import deque
 from dataclasses import dataclass
 
-from visioniq.config import CameraConfig, RuleConfig
-from visioniq.core.types import (
+from visionguard.config import CameraConfig, RuleConfig
+from visionguard.core.types import (
     AnomalyResult,
     BadgeEvent,
     Event,
     Severity,
     Track,
 )
-from visioniq.vision.features import CameraFeatures
+from visionguard.vision.features import CameraFeatures
 
 
 @dataclass(slots=True)

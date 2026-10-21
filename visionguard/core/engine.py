@@ -2,7 +2,7 @@
 
 One background thread owns all camera pipelines (detector, tracker, feature
 extractor, anomaly scorer, correlator), persists events and publishes an
-immutable :class:`~visioniq.core.types.Snapshot` that the console can read
+immutable :class:`~visionguard.core.types.Snapshot` that the console can read
 without locks.
 
 Synthetic scenes and video files are **pre-rolled** at start-up: frames are
@@ -27,9 +27,9 @@ from typing import Any
 import cv2
 import numpy as np
 
-from visioniq.config import AppConfig, CameraConfig, RuleConfig, resolve_path
-from visioniq.core.store import EventStore
-from visioniq.core.types import (
+from visionguard.config import AppConfig, CameraConfig, RuleConfig, resolve_path
+from visionguard.core.store import EventStore
+from visionguard.core.types import (
     AnomalyResult,
     BadgeEvent,
     BBox,
@@ -41,11 +41,11 @@ from visioniq.core.types import (
     Snapshot,
     TrackView,
 )
-from visioniq.correlation.rules import CorrelationEngine
-from visioniq.vision.anomaly import AnomalyScorer
-from visioniq.vision.detector import MotionDetector, Tracker, frame_energy
-from visioniq.vision.features import CameraFeatures, FeatureExtractor, track_views
-from visioniq.vision.source import DemoScript, FrameSource, SyntheticSource, VideoSource, resolve_source
+from visionguard.correlation.rules import CorrelationEngine
+from visionguard.vision.anomaly import AnomalyScorer
+from visionguard.vision.detector import MotionDetector, Tracker, frame_energy
+from visionguard.vision.features import CameraFeatures, FeatureExtractor, track_views
+from visionguard.vision.source import DemoScript, FrameSource, SyntheticSource, VideoSource, resolve_source
 
 log = logging.getLogger(__name__)
 
@@ -165,7 +165,7 @@ class Engine:
     def start(self) -> None:
         if self._thread is not None:
             return
-        self._thread = threading.Thread(target=self._run, name="visioniq-engine", daemon=True)
+        self._thread = threading.Thread(target=self._run, name="visionguard-engine", daemon=True)
         self._thread.start()
 
     def wait_ready(self, timeout: float = 30.0) -> bool:

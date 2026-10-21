@@ -26,7 +26,7 @@ from dataclasses import dataclass, field
 
 import numpy as np
 
-from visioniq.core.engine import Engine, Sample
+from visionguard.core.engine import Engine, Sample
 
 
 @dataclass(slots=True)
@@ -246,7 +246,7 @@ def analyse(samples: list[Sample], engine: Engine | None = None) -> BenchmarkRep
 
 def render_report(report: BenchmarkReport) -> str:
     lines = [
-        "VISIONIQ SYNTHETIC BENCHMARK",
+        "VISIONGUARD SYNTHETIC BENCHMARK",
         "=" * 66,
         f"windows scored      {report.windows:>8}",
         f"  anomalous         {report.anomalous:>8}",

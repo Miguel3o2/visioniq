@@ -19,8 +19,8 @@ from typing import Protocol
 import cv2
 import numpy as np
 
-from visioniq.config import CameraConfig
-from visioniq.core.types import BadgeSignal
+from visionguard.config import CameraConfig
+from visionguard.core.types import BadgeSignal
 
 ANOMALY_KINDS = (
     "running",

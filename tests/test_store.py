@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from visioniq.core.store import EventStore
-from visioniq.core.types import Event, Severity
+from visionguard.core.store import EventStore
+from visionguard.core.types import Event, Severity
 
 
 def _event(event_id: int, kind: str = "anomaly", camera: str = "CAM-01") -> Event:

@@ -1,10 +1,10 @@
 """Command line interface.
 
-    visioniq                     operator console (Textual)
-    visioniq headless            run the pipeline and print a summary
-    visioniq benchmark           measure anomaly detection on synthetic scenes
-    visioniq events              query the persisted event log
-    visioniq doctor              check the environment and configuration
+    visionguard                     operator console (Textual)
+    visionguard headless            run the pipeline and print a summary
+    visionguard benchmark           measure anomaly detection on synthetic scenes
+    visionguard events              query the persisted event log
+    visionguard doctor              check the environment and configuration
 """
 
 from __future__ import annotations
@@ -20,15 +20,15 @@ from datetime import datetime
 from pathlib import Path
 from typing import Sequence
 
-from visioniq import __version__
-from visioniq.benchmark import analyse, render_report
-from visioniq.config import AppConfig, ConfigError, load_config
-from visioniq.core.engine import Engine
-from visioniq.core.store import EventStore
-from visioniq.core.types import Severity
-from visioniq.vision.source import DemoScript
+from visionguard import __version__
+from visionguard.benchmark import analyse, render_report
+from visionguard.config import AppConfig, ConfigError, load_config
+from visionguard.core.engine import Engine
+from visionguard.core.store import EventStore
+from visionguard.core.types import Severity
+from visionguard.vision.source import DemoScript
 
-DEFAULT_CONFIG = "visioniq.toml"
+DEFAULT_CONFIG = "visionguard.toml"
 
 
 def _setup_logging(verbose: bool, quiet: bool, log_file: Path | None = None) -> None:
@@ -70,7 +70,7 @@ def _config(args: argparse.Namespace) -> AppConfig:
         if model_dir.exists():
             for model in model_dir.glob("*.npz"):
                 model.unlink(missing_ok=True)
-        logging.getLogger("visioniq").info("removed cached models")
+        logging.getLogger("visionguard").info("removed cached models")
     return config
 
 
@@ -89,11 +89,11 @@ def _demo(args: argparse.Namespace) -> DemoScript | None:
 def cmd_run(args: argparse.Namespace) -> int:
     config = _config(args)
     script = _demo(args)
-    _setup_logging(args.verbose, args.quiet, log_file=Path("data") / "visioniq.log")
+    _setup_logging(args.verbose, args.quiet, log_file=Path("data") / "visionguard.log")
     clock = _parse_clock(args.clock)
 
     try:
-        from visioniq.tui.app import VisionIQApp
+        from visionguard.tui.app import VisionGuardApp
     except ImportError as exc:
         print(f"Textual is required for the console: {exc}", file=sys.stderr)
         print("Install it with: pip install textual rich", file=sys.stderr)
@@ -106,7 +106,7 @@ def cmd_run(args: argparse.Namespace) -> int:
         speed=args.speed,
         preroll=not args.no_preroll,
     )
-    app = VisionIQApp(config, engine)
+    app = VisionGuardApp(config, engine)
     app.run()
     return 0
 
@@ -183,7 +183,7 @@ def cmd_headless(args: argparse.Namespace) -> int:
         print(f"    {kind:<18}{count:>4}")
 
     if args.report:
-        from visioniq.benchmark import analyse as _analyse
+        from visionguard.benchmark import analyse as _analyse
         report = _analyse(samples)
         payload = report.as_dict()
         payload["events"] = dict(counts)
@@ -286,7 +286,7 @@ def cmd_doctor(args: argparse.Namespace) -> int:
     import cv2
     import numpy as np
 
-    print(f"visioniq        {__version__}")
+    print(f"visionguard        {__version__}")
     print(f"python          {sys.version.split()[0]} ({sys.executable})")
     print(f"numpy           {np.__version__}")
     print(f"opencv          {cv2.__version__}")
@@ -312,7 +312,7 @@ def cmd_doctor(args: argparse.Namespace) -> int:
             p = Path(path)
             try:
                 p.parent.mkdir(parents=True, exist_ok=True)
-                probe = p.parent / ".visioniq_write_test"
+                probe = p.parent / ".visionguard_write_test"
                 probe.write_text("ok", encoding="utf-8")
                 probe.unlink()
                 print(f"writable        {p}")
@@ -330,10 +330,10 @@ def cmd_doctor(args: argparse.Namespace) -> int:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="visioniq",
-        description="VisionIQ - real-time CCTV detection, anomaly scoring and operator console",
+        prog="visionguard",
+        description="VisionGuard - real-time CCTV detection, anomaly scoring and operator console",
     )
-    parser.add_argument("--version", action="version", version=f"VisionIQ {__version__}")
+    parser.add_argument("--version", action="version", version=f"VisionGuard {__version__}")
     subparsers = parser.add_subparsers(dest="command")
 
     def common(sub: argparse.ArgumentParser) -> None:
@@ -381,7 +381,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser = build_parser()
     args = parser.parse_args(list(argv) if argv is not None else None)
     if not getattr(args, "command", None):
-        # Default to the console: ``visioniq`` behaves like ``visioniq run``.
+        # Default to the console: ``visionguard`` behaves like ``visionguard run``.
         argv = list(sys.argv[1:] if argv is None else argv)
         args = parser.parse_args(argv + ["run"] if argv else ["run"])
     try:

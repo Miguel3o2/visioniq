@@ -16,7 +16,7 @@ from rich.color import Color
 from rich.style import Style
 from rich.text import Text
 
-from visioniq.core.types import CameraState, CameraView, Severity
+from visionguard.core.types import CameraState, CameraView, Severity
 
 _SEVERITY_STYLE = {
     Severity.CRITICAL: "bold #ff5c5c",

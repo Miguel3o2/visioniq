@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pytest
 
-from visioniq.config import (
+from visionguard.config import (
     ConfigError,
     DEFAULT_CAMERAS,
     ModelConfig,
@@ -49,7 +49,7 @@ def test_model_config_validation():
 
 
 def test_toml_roundtrip_and_unknown_keys(tmp_path):
-    path = tmp_path / "visioniq.toml"
+    path = tmp_path / "visionguard.toml"
     path.write_text(
         """
 [app]

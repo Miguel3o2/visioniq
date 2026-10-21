@@ -1,17 +1,18 @@
-# VisionIQ
+# VisionGuard
 
 **A working CCTV analytics pipeline and terminal operator console — not an HTML mock-up.**
 
-VisionIQ ingests frames, detects and tracks moving objects, learns what normal looks
+VisionGuard ingests frames, detects and tracks moving objects, learns what normal looks
 like for each camera, raises explainable security events, and persists them. It runs
 as a single Python process and renders its operator console in the terminal with
 true-colour half-block pixels. There is no browser, no canvas animation and no
 hard-coded "model accuracy" badge.
 
-The original one-file mock-up is preserved untouched at the repository root:
-`VisionIQ — Intelligent CCTV Monitoring System.html`.
+The original one-file HTML mock-up is no longer in the working tree; it was
+unchanged for the first release and is still recoverable from git history
+(commit `b254115`).
 
-![VisionIQ operator console](data/tui.svg)
+![VisionGuard operator console](data/tui.svg)
 
 ## Screenshots
 
@@ -20,7 +21,7 @@ The original one-file mock-up is preserved untouched at the repository root:
 Eight cameras streaming through the console: per-camera health and anomaly scores on
 the left, the feed grid in the middle, and the correlated event rail at the top.
 
-![VisionIQ console running the eight-camera demo](images/console-pipeline.png)
+![VisionGuard console running the eight-camera demo](images/console-pipeline.png)
 
 ### Anomaly raised
 
@@ -28,9 +29,9 @@ The same console after a scripted injection. CAM-03 is outlined red with a score
 `1.00`, the camera row is highlighted, and the critical event is announced across
 the header.
 
-![VisionIQ console showing a critical anomaly on CAM-03](images/console-alert.png)
+![VisionGuard console showing a critical anomaly on CAM-03](images/console-alert.png)
 
-Screenshots are captured from `visioniq run --demo`; regenerate them with any
+Screenshots are captured from `visionguard run --demo`; regenerate them with any
 terminal screenshot tool, or use `s` in the console to save an annotated PNG frame
 to `snapshots/`.
 
@@ -105,7 +106,7 @@ ghost when it leaves.
 
 Labels (`person`, `vehicle`, `object`) are geometric heuristics, not a learned
 classifier. Replacing that stage with YOLO or another detector is isolated to
-`visioniq/vision/detector.py`; the rest of the pipeline consumes the same
+`visionguard/vision/detector.py`; the rest of the pipeline consumes the same
 `Detection` and `Track` types.
 
 ### Calibration you can inspect
@@ -173,8 +174,8 @@ NumPy MLP autoencoder is used automatically.
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -e ".[dev,torch]"
-python -m visioniq doctor
-python -m visioniq run --demo
+python -m visionguard doctor
+python -m visionguard run --demo
 ```
 
 ### Linux / macOS
@@ -183,31 +184,31 @@ python -m visioniq run --demo
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -e ".[dev,torch]"
-python -m visioniq doctor
-python -m visioniq run --demo
+python -m visionguard doctor
+python -m visionguard run --demo
 ```
 
-If the package is installed, `visioniq` is equivalent to `visioniq run`.
+If the package is installed, `visionguard` is equivalent to `visionguard run`.
 Without a subcommand it launches the console.
 
 ### Commands
 
 ```bash
 # Operator console, scripted anomaly demo, 8 cameras
-visioniq run --demo
+visionguard run --demo
 
 # Headless pipeline with a summary (no Textual)
-visioniq headless --demo --seconds 20
+visionguard headless --demo --seconds 20
 
 # Measured synthetic benchmark (cold calibration)
-visioniq benchmark --fresh --json data/benchmark.json
+visionguard benchmark --fresh --json data/benchmark.json
 
 # Query the persisted event log
-visioniq events --limit 25
-visioniq events --json
+visionguard events --limit 25
+visionguard events --json
 
 # Environment and configuration check
-visioniq doctor
+visionguard doctor
 ```
 
 Key options: `--config PATH`, `--speed N`, `--clock HH:MM`, `--fresh`
@@ -237,7 +238,7 @@ Run on an Intel Core i7-10750H (6 cores / 12 threads), 16 GB RAM, Windows,
 Python 3.14.3, PyTorch 2.11 CPU, OpenCV 5.0, 8 synthetic cameras at 10 fps.
 
 ```text
-visioniq benchmark --fresh
+visionguard benchmark --fresh
 ```
 
 180 s of scene time, 16 isolated labelled injections, 7,216 scored windows:
@@ -316,15 +317,15 @@ Defaults mirror the original eight-camera deployment and need no file. To custom
 copy the example and edit it:
 
 ```bash
-cp visioniq.example.toml visioniq.toml
+cp visionguard.example.toml visionguard.toml
 ```
 
-`visioniq.toml` is loaded automatically from the working directory. Unknown keys
+`visionguard.toml` is loaded automatically from the working directory. Unknown keys
 are rejected, so a typo fails loudly.
 
 ```toml
 [app]
-db_path = "data/visioniq.db"
+db_path = "data/visionguard.db"
 model_dir = "data/models"
 snapshot_dir = "snapshots"
 render_fps = 8.0
@@ -396,7 +397,7 @@ while validating a new camera so the baseline does not move underneath you.
 ## 7. Project layout
 
 ```
-visioniq/
+visionguard/
   config.py              dataclasses, defaults, strict TOML loader
   core/
     types.py             BBox, Detection, Track, Event, Snapshot, feature order
@@ -456,7 +457,15 @@ benchmark metrics, render helpers, and an end-to-end engine start/stop.
 
 ---
 
-## 9. Original file
+## 9. The original mock-up
 
-`VisionIQ — Intelligent CCTV Monitoring System.html` is left exactly as it was.
-It remains useful as a visual reference; it is no longer the application.
+The single-file HTML mock-up that started this project was left untouched through
+the first release. It is not part of the current tree; the file was deleted in
+commit `8da5b43` and remains readable at `b254115`. To bring the historical file
+back into the working tree:
+
+```bash
+git checkout b254115 -- '*.html'
+```
+
+It is still a useful visual reference; it is no longer the application.

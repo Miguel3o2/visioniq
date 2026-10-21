@@ -27,8 +27,8 @@ from typing import Any, Protocol
 
 import numpy as np
 
-from visioniq.config import ModelConfig
-from visioniq.core.types import FEATURE_LABELS, AnomalyResult
+from visionguard.config import ModelConfig
+from visionguard.core.types import FEATURE_LABELS, AnomalyResult
 
 log = logging.getLogger(__name__)
 
@@ -561,5 +561,5 @@ def _ema(errors: np.ndarray, alpha: float) -> np.ndarray:
 
 
 def _feature_name(index: int) -> str:
-    from visioniq.core.types import FEATURE_NAMES
+    from visionguard.core.types import FEATURE_NAMES
     return FEATURE_NAMES[index] if 0 <= index < len(FEATURE_NAMES) else f"f{index}"

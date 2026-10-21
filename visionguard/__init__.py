@@ -1,4 +1,4 @@
-"""VisionIQ - intelligent CCTV monitoring.
+"""VisionGuard - intelligent CCTV monitoring.
 
 A real pipeline that replaces the original static HTML mock-up:
 
@@ -7,7 +7,7 @@ A real pipeline that replaces the original static HTML mock-up:
            ->  access-control correlation  ->  events  ->  console / SQLite
 
 The package is import-safe without optional heavy dependencies; the
-:mod:`visioniq.vision.anomaly` module falls back to a NumPy autoencoder when
+:mod:`visionguard.vision.anomaly` module falls back to a NumPy autoencoder when
 PyTorch is not installed.
 """
 

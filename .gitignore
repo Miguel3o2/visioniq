@@ -24,7 +24,7 @@ snapshots/
 *.db-shm
 
 # Local configuration and secrets
-visioniq.toml
+visionguard.toml
 .env
 .env.*
 !.env.example

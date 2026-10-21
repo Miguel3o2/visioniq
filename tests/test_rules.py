@@ -5,10 +5,10 @@ from datetime import datetime
 
 import numpy as np
 
-from visioniq.config import CameraConfig, Rect, RuleConfig, ZoneConfig
-from visioniq.core.types import AnomalyResult, BadgeEvent, BBox, Track
-from visioniq.correlation.rules import CorrelationEngine
-from visioniq.vision.features import CameraFeatures
+from visionguard.config import CameraConfig, Rect, RuleConfig, ZoneConfig
+from visionguard.core.types import AnomalyResult, BadgeEvent, BBox, Track
+from visionguard.correlation.rules import CorrelationEngine
+from visionguard.vision.features import CameraFeatures
 
 
 def _camera(**overrides) -> CameraConfig:
