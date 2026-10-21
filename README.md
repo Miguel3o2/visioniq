@@ -13,6 +13,27 @@ The original one-file mock-up is preserved untouched at the repository root:
 
 ![VisionIQ operator console](data/tui.svg)
 
+## Screenshots
+
+### Live pipeline
+
+Eight cameras streaming through the console: per-camera health and anomaly scores on
+the left, the feed grid in the middle, and the correlated event rail at the top.
+
+![VisionIQ console running the eight-camera demo](images/console-pipeline.png)
+
+### Anomaly raised
+
+The same console after a scripted injection. CAM-03 is outlined red with a score of
+`1.00`, the camera row is highlighted, and the critical event is announced across
+the header.
+
+![VisionIQ console showing a critical anomaly on CAM-03](images/console-alert.png)
+
+Screenshots are captured from `visioniq run --demo`; regenerate them with any
+terminal screenshot tool, or use `s` in the console to save an annotated PNG frame
+to `snapshots/`.
+
 ---
 
 ## 1. What was actually in the original
@@ -394,6 +415,7 @@ visioniq/
   benchmark.py           synthetic AUROC/F1/sweep/per-camera report
   cli.py                 run, headless, benchmark, events, doctor
 tests/                   31 pytest tests
+images/                  console screenshots used in this README
 data/tui.svg             console screenshot (Textual SVG export)
 data/benchmark5.json     latest benchmark report
 ```
